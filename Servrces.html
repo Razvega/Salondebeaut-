@@ -1,0 +1,862 @@
+<html><head><base 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon de Beauté Locale - Votre Beauté, Notre Passion</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #a3d9ff;
+    --secondary-color: #f0f8ff;
+    --text-color: #333333;
+    --accent-color: #ff9a8b;
+    --gradient: linear-gradient(45deg, #a3d9ff, #ff9a8b);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background: var(--gradient);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 1.5rem;
+  }
+  
+  nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  nav ul li a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  main {
+    padding-top: 80px;
+  }
+  
+  h1, h2, h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .hero {
+    background: var(--gradient);
+    padding: 6rem 0;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    background-color: #ffffff;
+    color: var(--accent-color);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.5s;
+  }
+  
+  .btn:hover::before {
+    left: 100%;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  
+  .slider {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .slide.current {
+    opacity: 1;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .service-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .service-card:hover::before {
+    opacity: 0.1;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  
+  .service-card i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+  }
+  
+  .about {
+    background: var(--gradient);
+    padding: 6rem 0;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .about::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #ffffff;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%, 0% 100%);
+  }
+  
+  .team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .team-member {
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-10px);
+  }
+  
+  .team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 5px solid #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .team-member:hover img {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
+  
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(163, 217, 255, 0.5);
+  }
+  
+  #map {
+    height: 400px;
+    width: 100%;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  footer {
+    background: var(--gradient);
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    position: relative;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #ffffff;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+  }
+  
+  .testimonials {
+    background-color: var(--secondary-color);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonial-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .testimonial-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .testimonial {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 2rem;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    scroll-snap-align: start;
+  }
+  
+  .testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  
+  .gallery {
+    padding: 4rem 0;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .newsletter {
+    background: var(--gradient);
+    padding: 4rem 0;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .newsletter form {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .newsletter input[type="email"] {
+    padding: 0.8rem;
+    width: 300px;
+    border: none;
+    border-radius: 50px 0 0 50px;
+  }
+  
+  .newsletter button {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newsletter button:hover {
+    background-color: #ff8b7a;
+  }
+  
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+    
+    nav ul {
+      margin-top: 1rem;
+    }
+    
+    nav ul li {
+      margin-left: 0;
+      margin-right: 1rem;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+    }
+    
+    .newsletter form {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .newsletter input[type="email"] {
+      width: 100%;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    
+    .newsletter button {
+      width: 100%;
+      border-radius: 50px;
+    }
+  }
+
+  /* 3D Effect for Service Cards */
+  .service-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .service-card:hover {
+    transform: rotateY(10deg);
+  }
+
+  /* Pulse Animation for CTA Button */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  .cta-btn {
+    animation: pulse 2s infinite;
+  }
+
+  /* Shiny Effect for Headers */
+  .shiny-text {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shiny-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+    transition: 0.5s;
+  }
+
+  .shiny-text:hover::before {
+    left: 100%;
+  }
+
+  /* Bevel Effect for Images */
+  .bevel-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bevel-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <div class="logo shiny-text">Salon de Beauté Locale</div>
+      <ul>
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#testimonials">Témoignages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <h1 class="shiny-text">Bienvenue chez Salon de Beauté Locale</h1>
+        <p>Votre beauté, notre passion. Découvrez nos services de beauté personnalisés.</p>
+        <a href="#contact" class="btn cta-btn">Prendre Rendez-vous</a>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2 class="shiny-text">Nos Services Principaux</h2>
+      <div class="slider">
+        <div class="slide current">
+          <img src="https://via.placeholder.com/800x400?text=Maquillage+Professionnel" alt="Maquillage Professionnel" width="800" height="400" class="bevel-img">
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/800x400?text=Soins+du+Visage" alt="Soins du Visage" width="800" height="400" class="bevel-img">
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/800x400?text=Manucure+et+Pédicure" alt="Manucure et Pédicure" width="800" height="400" class="bevel-img">
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="container">
+      <h2 class="shiny-text">Nos Services</h2>
+      <div class="services">
+        <div class="service-card">
+          <i class="fas fa-palette"></i>
+          <h3>Maquillage</h3>
+          <p>Maquillage professionnel pour toutes occasions</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-spa"></i>
+          <h3>Soins du Visage</h3>
+          <p>Traitements personnalisés pour une peau éclatante</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-hand-sparkles"></i>
+          <h3>Manucure</h3>
+          <p>Soins des ongles et designs créatifs</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-shoe-prints"></i>
+          <h3>Pédicure</h3>
+          <p>Soins relaxants pour vos pieds</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="shiny-text">À Propos de Nous</h2>
+        <p>Salon de Beauté Locale est votre destination beauté depuis 2010. Notre équipe de professionnels passionnés s'engage à vous offrir des services de qualité dans une ambiance chaleureuse et accueillante.</p>
+        <div class="team">
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Sophie Martin" width="150" height="150" class="bevel-img">
+            <h3>Sophie Martin</h3>
+            <p>Fondatrice &amp; Maquilleuse</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Luc Dubois" width="150" height="150" class="bevel-img">
+            <h3>Luc Dubois</h3>
+            <p>Esthéticien</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Marie Leroux" width="150" height="150" class="bevel-img">
+            <h3>Marie Leroux</h3>
+            <p>Spécialiste Manucure</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery container">
+      <h2 class="shiny-text">Notre Galerie</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://via.placeholder.com/300x300?text=Maquillage+1" alt="Maquillage 1" width="300" height="300" class="bevel-img">
+        </div>
+        <div class="gallery-item">
+          <img src="https://via.placeholder.com/300x300?text=Soin+du+Visage+1" alt="Soin du Visage 1" width="300" height="300" class="bevel-img">
+        </div>
+        <div class="gallery-item">
+          <img src="https://via.placeholder.com/300x300?text=Manucure+1" alt="Manucure 1" width="300" height="300" class="bevel-img">
+        </div>
+        <div class="gallery-item">
+          <img src="https://via.placeholder.com/300x300?text=Pédicure+1" alt="Pédicure 1" width="300" height="300" class="bevel-img">
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2 class="shiny-text">Ce que disent nos clients</h2>
+        <div class="testimonial-container">
+          <div class="testimonial">
+            <img src="https://via.placeholder.com/80" alt="Client 1" width="80" height="80" class="bevel-img">
+            <h3>Amélie D.</h3>
+            <p>"Une expérience incroyable ! Le personnel est attentionné et le résultat est au-delà de mes attentes."</p>
+          </div>
+          <div class="testimonial">
+            <img src="https://via.placeholder.com/80" alt="Client 2" width="80" height="80" class="bevel-img">
+            <h3>Thomas L.</h3>
+            <p>"Ambiance relaxante et service impeccable. Je recommande vivement !"</p>
+          </div>
+          <div class="testimonial">
+            <img src="https://via.placeholder.com/80" alt="Client 3" width="80" height="80" class="bevel-img">
+            <h3>Julie M.</h3>
+            <p>"Les soins du visage sont divins. Ma peau n'a jamais été aussi rayonnante."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="shiny-text">Contactez-nous</h2>
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Envoyer</button>
+      </form>
+      <div id="map"></div>
+    </section>
+
+    <section class="newsletter">
+      <div class="container">
+        <h2 class="shiny-text">Abonnez-vous à notre newsletter</h2>
+        <p>Recevez nos offres spéciales et nos dernières actualités directement dans votre boîte mail.</p>
+        <form id="newsletter-form">
+          <input type="email" placeholder="Votre adresse email" required>
+          <button type="submit" class="btn">S'abonner</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Salon de Beauté Locale. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script>
+    // Slider
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+      slides[currentSlide].classList.remove('current');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('current');
+    }
+
+    setInterval(nextSlide, 5000);
+
+    // Google Map
+    function initMap() {
+      const location = { lat: 48.8566, lng: 2.3522 }; // Paris coordinates (replace with your salon's location)
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: location
+      });
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+    }
+
+    // Initialize map when the page loads
+    window.onload = initMap;
+
+    // Form submission
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the form data to a server
+      // For this example, we'll just show an alert
+      alert('Merci pour votre message. Nous vous contacterons bientôt!');
+      form.reset();
+    });
+
+    // Newsletter form submission
+    const newsletterForm = document.getElementById('newsletter-form');
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci de vous être abonné à notre newsletter!');
+      newsletterForm.reset();
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade in sections on scroll
+    gsap.utils.toArray('section').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    // Animate service cards
+    gsap.from('.service-card', {
+      duration: 0.8,
+      scale: 0.8,
+      y: 100,
+      opacity: 0,
+      stagger: 0.2,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: '.services',
+        start: "top 80%"
+      }
+    });
+
+    // Animate team members
+    gsap.from('.team-member', {
+      duration: 1,
+      opacity: 0,
+      y: 50,
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: '.team',
+        start: "top 80%"
+      }
+    });
+
+    // Animate gallery items
+    gsap.from('.gallery-item', {
+      duration: 1,
+      opacity: 0,
+      scale: 0.8,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: '.gallery',
+        start: "top 80%"
+      }
+    });
+
+    // Animate testimonials
+    gsap.from('.testimonial', {
+      duration: 1,
+      opacity: 0,
+      x: -100,
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: '.testimonials',
+        start: "top 80%"
+      }
+    });
+
+    // 3D tilt effect for service cards
+    VanillaTilt.init(document.querySelectorAll(".service-card"), {
+      max: 25,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.5,
+    });
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+</body>
+</html>
